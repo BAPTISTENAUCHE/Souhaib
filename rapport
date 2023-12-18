@@ -1,0 +1,91 @@
+MY FIRST CHATBOT
+
+SGHAIER Souhaib et NAUCHE Baptiste
+
+
+GROUPE B
+2023
+
+
+
+
+
+
+ 
+Introduction
+Le projet d'analyse de texte que nous avons entrepris vise à explorer les concepts fondamentaux du traitement de texte et à comprendre une méthode couramment utilisée dans le développement de chatbots et d'intelligences artificielles génératives, tels que ChatGPT. Notre approche se concentre sur l'utilisation du nombre d'occurrences des mots dans un corpus de textes pour générer des réponses intelligentes.
+
+Les Fonctionnalités Prévues
+Trouver les Mots les Moins Importants : Identifier les mots qui sont moins importants dans les discours des présidents. La fonction ‘find_least_important_words’ donne une liste des mots considérés comme moins importants.
+Trouver les Mots Utilisés par Tous les Présidents : Découvrir quels mots sont utilisés par tous les présidents dans leurs discours. La fonction ‘mots_tous_presidents’ renvoie les mots qui sont utilisés par tous les présidents.
+Trouver le Premier Président à Parler du Climat et/ou de l'Écologie : Identifier le premier président qui a abordé les sujets du climat et/ou de l'écologie. La fonction ‘premier_president_parler_climat_ecologie’ retourne le nom du président concerné.
+Trouver les Mots les Plus Importants : Détecter les mots les plus importants dans l'ensemble des discours. La fonction ‘find_most_important_words’ renvoie une liste des mots considérés comme les plus importants.
+Trouver les Présidents qui ont Prononcé le Mot "Nation" et Indiquer Celui qui l’a le Plus Dit : Identifier les présidents ayant mentionné le mot "Nation" et déterminer celui qui l'a le plus utilisé. La fonction ‘president_parle_nation’ fournit le nombre d'occurrences par président et indique le plus loquace.
+
+
+
+Les Fonctionnalités Ajoutées
+Mode Chatbot pour Poser des Questions : Permettre à l'utilisateur de poser des questions au chatbot. Le programme propose un mode chatbot où l'utilisateur peut poser des questions et obtenir des réponses basées sur l'analyse de texte.
+Calcul de Similarité pour Répondre aux Questions : Répondre aux questions en calculant la similarité entre la question de l'utilisateur et les discours des présidents. Utilisation des fonctions ‘calculate_question_tfidf_vector’ et ‘find_most_relevant_document’ pour trouver la réponse la plus pertinente.
+
+
+Description des Principaux Algorithmes Réalisés
+1. Nettoyage et Prétraitement du Texte
+L'algorithme de nettoyage et de prétraitement vise à préparer les données pour l'analyse ultérieure. Il comprend plusieurs étapes :
+Suppression de la Ponctuation :
+Chaque fichier est parcouru, et la ponctuation est supprimée, y compris les caractères spéciaux tels que points, virgules, et parenthèses.
+Conversion en Minuscules :
+Toutes les lettres du texte sont converties en minuscules pour assurer la cohérence et éviter les différences de cas.
+Division du Texte en Mots (Tokens) :
+Le texte nettoyé est divisé en mots individuels, créant une liste de mots prêts pour l'analyse.
+2. Calcul de la Matrice TF-IDF
+L'algorithme de calcul de la matrice TF-IDF consiste en plusieurs étapes :
+Calcul de la Fréquence des Termes (TF) :
+Pour chaque fichier, la fonction nb_occurrence compte le nombre d'occurrences de chaque mot, créant un dictionnaire de fréquence des termes.
+Calcul de l'IDF :
+La fonction compute_idf calcule l'IDF pour chaque mot dans chaque fichier, créant un dictionnaire d'IDF.
+Calcul du Score TF-IDF :
+La fonction compute_tf_idf combine les résultats de TF et IDF pour obtenir le score TF-IDF pour chaque mot dans chaque document.
+La matrice TF-IDF permet de quantifier l'importance relative de chaque mot dans le corpus. Cette représentation pondérée tient compte de la fréquence du terme dans un document particulier ainsi que de sa rareté dans l'ensemble du corpus.
+3. Analyse de Similarité Cosinus pour les Question
+Calcul du Vecteur TF-IDF de la Question :
+La fonction calculate_question_tfidf_vector convertit la question en un vecteur TF-IDF en utilisant le vocabulaire des discours présidentiels.
+Calcul de la Similarité Cosinus :
+La fonction cosine_similarity mesure la similarité cosinus entre le vecteur de la question et les vecteurs des mots du corpus.
+Identification du Document le Plus Pertinent :
+La fonction find_most_relevant_document identifie le document (discours présidentiel) le plus pertinent en fonction de la similarité cosinus.
+La similarité cosinus est utilisée car elle mesure l'angle entre deux vecteurs, fournissant une mesure de la similarité indépendamment de la longueur des vecteurs. Cela permet de déterminer quels mots du corpus sont les plus similaires à la question.
+
+Choix des Structures de Données
+Listes : Nous avons choisi d’utiliser des listes pour le stockage des noms de fichiers, des mots, et des réponses et car cela facilite l'indexation et l'accès aux éléments.
+Dictionnaires : Nous avons choisi d’utiliser des dictionnaires pour le stockage des occurrences de mots, des scores TF-IDF, et des résultats des questions. Cela permet un accès rapide aux informations spécifiques associées à chaque mot ou document.
+Ensembles (Sets) : Nous avons chosi d’utiliser des ensembles car cela nous permet d’éliminer des doublons dans les listes de mots. Et que cela garantit l'unicité des éléments (utile pour les opérations de comparaison).
+
+Difficultés rencontrées 
+
+Nous avons eu du mal lors de la première partie du projet avec la matrice TF-IDF : 
+- Comprendre le concept abstrait de TF-IDF et son rôle dans la représentation pondérée des termes.
+- Appréhender les formules mathématiques associées au calcul du TF, de l'IDF et du score TF-IDF.
+- Appliquer l'algorithme du calcul de la matrice TF-IDF de manière efficace sur des fichiers de discours présidentiels
+
+Mais nous avons réussi à surmonter ces difficultés en nous nous renseignant davantage sur la matrice TF-IDF, grâce à des explications détaillées, des exemples pratiques et une approche progressive, nous avons pu acquérir une meilleure compréhension du fonctionnement de la matrice TF-IDF dans le contexte du projet. 
+
+Nous avons également rencontré des difficultés afin de coordonner les différentes parties du code. Afin de régler ce problème, nous avons mis en place une meilleure description de chaque étape en utilisant un système d’arborescence (pour définir clairement l’utilité de chaque fonction et son imbrication).
+
+
+[CAPTURES D’ECRAN DES TESTS]
+
+Conclusion
+
+Ce projet de chatbot a été une expérience instructive, permettant d'approfondir nos compétences techniques en traitement de texte et en Python. La collaboration au sein de l'équipe a renforcé notre capacité à travailler efficacement ensemble grâce à l’utilisation de nouveaux outils, et la gestion du temps a été cruciale pour respecter les délais. 
+
+
+
+
+
+
+
+
+
+
+
